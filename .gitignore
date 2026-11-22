@@ -1,0 +1,13 @@
+# Secrets & Kubeconfig
+.env
+*.pem
+*.key
+kubeconfig
+k3s.yaml
+
+# Istio downloads
+istio-*/
+
+# OS & Editor
+.DS_Store
+.vscode/
