@@ -91,9 +91,12 @@ helm install canary-release ./charts/canary-app -n canary-demo
 
 ---
 
-## Author
+<div align="center">
 
-**Sujal Surani** — Cloud & DevOps Engineer  
-Architected and maintained with Terraform, K3s, and Istio on AWS.
+**Architected & Maintained by [Sujal Surani](https://github.com/sujal-surani)**  
+<sub>Cloud & DevOps · Terraform · K3s · Istio · AWS</sub>
 
-[GitHub](https://github.com/sujal-surani) · [LinkedIn](https://www.linkedin.com/in/sujal-surani)
+[![GitHub](https://img.shields.io/badge/GitHub-24292F?style=flat-square&logo=github&logoColor=white)](https://github.com/sujal-surani)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sujal-surani)
+
+</div>
