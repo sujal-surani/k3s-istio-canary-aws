@@ -1,0 +1,25 @@
+image:
+  repository: sujalsurani/canary-python-app
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+  targetPort: 8080
+
+stable:
+  tag: "v1"
+  replicas: 1
+  weight: 80
+
+canary:
+  tag: "v2"
+  replicas: 1
+  weight: 20
+
+resources:
+  requests:
+    cpu: "20m"
+    memory: "32Mi"
+  limits:
+    cpu: "50m"
+    memory: "64Mi"

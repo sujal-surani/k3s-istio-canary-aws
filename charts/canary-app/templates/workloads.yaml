@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-app-v1
+spec:
+  replicas: {{ .Values.stable.replicas }}
+  selector:
+    matchLabels:
+      app: canary-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: canary-app
+        version: v1
+    spec:
+      containers:
+        - name: python-app
+          image: "{{ .Values.image.repository }}:{{ .Values.stable.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-app-v2
+spec:
+  replicas: {{ .Values.canary.replicas }}
+  selector:
+    matchLabels:
+      app: canary-app
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: canary-app
+        version: v2
+    spec:
+      containers:
+        - name: python-app
+          image: "{{ .Values.image.repository }}:{{ .Values.canary.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary-app-svc
+spec:
+  selector:
+    app: canary-app
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
