@@ -8,17 +8,17 @@ Progressive traffic splitting, live canary promotion, and zero-downtime rollback
 flowchart LR
     Dev["Developer"] -->|terraform apply| TF["Terraform IaC"]
     Dev -->|docker push| DH["Docker Hub<br/>(v1 & v2)"]
-    Dev -->|helm upgrade| K3s
+    Dev -->|helm upgrade| AWS
+    Users["Public Traffic"] <-->|HTTP :80| IGW
+
+    TF -->|Provisions| AWS
+    DH -.->|Pulls Images| AWS
 
     subgraph AWS["AWS EC2 (t3.small) — K3s Cluster"]
         direction LR
         IGW["Istio Ingress<br/>Gateway (:80)"] -->|80% weight| V1["Python App v1<br/>(Stable + Envoy)"]
         IGW -->|20% weight| V2["Python App v2<br/>(Canary + Envoy)"]
     end
-
-    TF -->|Provisions| AWS
-    DH -.->|Pulls Images| V1 & V2
-    Users["Public Traffic"] <-->|HTTP :80| IGW
 ```
 
 ## Tech Stack
