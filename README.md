@@ -88,3 +88,12 @@ helm install canary-release ./charts/canary-app -n canary-demo
 | 80/20 Initial Split | 100% Rollback to v1 |
 | :---: | :---: |
 | ![Baseline Split](screenshots/01-baseline-80-20-split.png) | ![Baseline Rollback](screenshots/02-baseline-rollback-v1.png) |
+
+---
+
+## Author
+
+**Sujal Surani** — Cloud & DevOps Engineer  
+Architected and maintained with Terraform, K3s, and Istio on AWS.
+
+[GitHub](https://github.com/sujal-surani) · [LinkedIn](https://www.linkedin.com/in/sujal-surani)
